@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="scss/player.css">
+</head>
+<body>
+<div class="player" th:fragment="player">
+    <div class="top">
+        <div class="container">
+
+            <div class="left">
+                <div class="img"></div>
+                <div class="text">下载豆瓣FM APP · 我要反馈</div>
+            </div>
+            <div class="right">
+                <div class="login register">登录 I 注册</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="container">
+            <div class="left"></div>
+            <div class="mid">
+                <div class="song">我不完美</div>
+                <div class="singer">柳工鸿</div>
+                <div class="playBar">
+                    <div class="playBar-top">
+                        <div class="top-left">
+                            <div class="time">-03:34</div>
+                            <div class="voice"></div>
+                        </div>
+                        <div class="top-right">
+                            <div class="lyrics"></div>
+                            <div class="download"></div>
+                            <div class="share"></div>
+                        </div>
+                    </div>
+                    <div class="playBar-main"></div>
+                    <div class="playBar-down">
+                        <div class="down-left">
+                            <div class="like"></div>
+                            <div class="delete"></div>
+                        </div>
+                        <div class="down-mid">
+                            <div class="list"></div>
+                            <div class="play-type"></div>
+                        </div>
+                        <div class="down-right">
+                            <div class="last-song"></div>
+                            <div class="play"></div>
+                            <div class="next-song"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="info">
+                    <span>登录/注册</span> 后豆瓣FM将永久保留你的收听历史与喜好
+                </div>
+            </div>
+            <div class="right"></div>
+            <div class="singer">
+                <ul class="signal">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+                <div class="singer-text">李玖哲 MHz</div>
+                <ul class="flag">
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="zhaohe">
+            <div class="img"></div>
+            <div class="text">兆赫</div>
+        </div>
+        <div class="gedan">
+            <div class="img"></div>
+            <div class="text">歌单</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

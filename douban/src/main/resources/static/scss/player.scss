@@ -1,0 +1,463 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.player {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: #E5E5E5;;
+
+  .top {
+    display: flex;
+    height: 92px;
+    background: #FBFBFB;
+    justify-content: center;
+
+    .container {
+      flex: none;
+      display: flex;
+      width: 1040px;
+      justify-content: space-between;
+
+      .left {
+        margin-top: 30px;
+        display: flex;
+
+        .img {
+          width: 80px;
+          height: 32px;
+          margin-right: 40px;
+          background: url("../img/image 11.png") no-repeat center;
+          background-size: contain;
+        }
+
+        .text {
+          width: 155px;
+          position: relative;
+          top: 6px;
+          font-family: PingFang SC;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 17px;
+          /* identical to box height */
+
+
+          color: #B3B3B3;
+        }
+      }
+
+      .right {
+        margin-top: 36px;
+        font-family: PingFang SC;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 17px;
+        /* identical to box height */
+        color: #B3B3B3;
+
+      }
+    }
+
+  }
+
+  .main {
+    background: #FBFBFB;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    .container {
+      flex: none;
+      width: 1040px;
+      display: flex;
+      position: relative;
+      justify-content: space-evenly;
+      padding-top: 160px;
+
+      .left {
+        position: relative;
+        background: url("../img/image 13.png") no-repeat center;
+        background-size: contain;
+        top: 32px;
+        width: 80px;
+        height: 80px;
+
+        &:after {
+          content: "下载豆瓣FM APP 让好音乐继续";
+          display: block;
+          position: relative;
+          top: 85px;
+          width: 78px;
+          height: 28px;
+          font-family: PingFang SC;
+          font-style: normal;
+          font-weight: 200;
+          font-size: 10px;
+          line-height: 14px;
+          text-align: center;
+
+          color: #979797;
+        }
+      }
+
+      .mid {
+        position: relative;
+        top: 36px;
+        width: 500px;
+
+        .song {
+          margin-bottom: 10px;
+          font-family: PingFang SC;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 20px;
+          line-height: 28px;
+          /* identical to box height */
+          color: #000000;
+        }
+
+        .singer {
+          margin-bottom: 15px;
+          position: relative;
+          font-family: PingFang SC;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 17px;
+          /* identical to box height */
+
+
+          color: #7E7E7E;
+        }
+
+        .playBar {
+          width: 100%;
+
+          .playBar-main {
+            width: 100%;
+            height: 2px;
+            margin-bottom: 60px;
+            background: #E9E9E9;
+            transform: matrix(1, 0, 0, -1, 0, 0);
+          }
+
+          .playBar-top {
+            width: 100%;
+            display: flex;
+            margin-bottom: 5px;
+            justify-content: space-between;
+
+            .top-left {
+              //position: relative;
+              display: flex;
+
+              .time {
+                font-family: PingFang SC;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 10px;
+                line-height: 14px;
+                /* identical to box height */
+                color: #7E7E7E;
+              }
+
+              .voice {
+                position: relative;
+                top: 2px;
+                margin-left: 10px;
+                background: url("../img/image 12.png") no-repeat center;
+                background-size: contain;
+                width: 12px;
+                height: 10px;
+              }
+            }
+
+            .top-right {
+              display: flex;
+              width: 113px;
+              justify-content: space-between;
+
+              .lyrics {
+                width: 15px;
+                height: 13px;
+                background: url("../img/image 15.png") no-repeat center;
+                background-size: contain;
+              }
+
+              .download {
+                width: 12px;
+                height: 14px;
+                background: url("../img/image 17.png") no-repeat center;
+                background-size: contain;
+              }
+
+              .share {
+                width: 18px;
+                height: 15px;
+                background: url("../img/image 16.png") no-repeat center;
+                background-size: contain;
+              }
+            }
+          }
+
+          .playBar-down {
+            width: 100%;
+            display: flex;
+
+            .down-left {
+              display: flex;
+              width: 95px;
+              justify-content: space-between;
+
+              .like {
+                width: 30px;
+                height: 29px;
+                background: url("../img/image 18.png") no-repeat center;
+                background-size: contain;
+              }
+
+              .delete {
+                width: 25px;
+                height: 29px;
+                background: url("../img/image 19.png") no-repeat center;
+                background-size: contain;
+              }
+            }
+
+            .down-mid {
+              position: relative;
+              top: 9px;
+              display: flex;
+              margin-right: 30px;
+              margin-left: 135px;
+              justify-content: space-between;
+              width: 48px;
+
+              .list {
+                width: 14px;
+                height: 10px;
+                background: url("../img/image 32.png") no-repeat center;
+                background-size: contain;
+              }
+
+              .play-type {
+                width: 14px;
+                height: 12px;
+                background: url("../img/image 33.png") no-repeat center;
+                background-size: contain;
+              }
+            }
+
+            .down-right {
+              display: flex;
+              width: 192px;
+              justify-content: space-between;
+
+              .last-song {
+                width: 25px;
+                height: 28px;
+                background: url("../img/image 29.png");
+                background-size: contain;
+              }
+
+              .play {
+                width: 0;
+                height: 0;
+                border-left: 22px solid #4A4A4A;
+                border-top: 15px solid rgba(0, 0, 0, 0);
+                border-bottom: 15px solid rgba(0, 0, 0, 0);
+
+                //width: 30px;
+                //height: 22px;
+                //background: #4A4A4A;
+                //border-radius: 2px;
+                //transform: rotate(90deg);
+              }
+
+              .next-song {
+                width: 25px;
+                height: 28px;
+                background: url("../img/image 29.png");
+                background-size: contain;
+                transform: rotate(-180deg);
+              }
+            }
+          }
+        }
+
+        .info {
+          margin-top: 50px;
+          width: 300px;
+          height: 30px;
+          background: #EDEDED;
+          font-family: PingFang SC;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 30px;
+          display: flex;
+          justify-content: center;
+          /* identical to box height */
+          color: black;
+
+          span {
+            color: #2F9842;
+          }
+
+        }
+      }
+
+      .right {
+        background: url("../img/image 14.png") no-repeat center;
+        background-size: contain;
+        border-radius: 50%;
+        height: 258px;
+        width: 258px;
+      }
+
+      .singer {
+        display: flex;
+        position: absolute;
+        top: 114px;
+        left: 165px;
+        font-family: PingFang SC;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 22px;
+
+        color: #2F9842;
+
+        .signal {
+          position: relative;
+          top: 7px;
+          display: flex;
+          width: 9px;
+          height: 10px;
+          justify-content: space-evenly;
+          transform: rotate(180deg);
+          margin-right: 10px;
+          li {
+            &:first-child {
+              width: 1px;
+              height: 8px;
+              background: #2F9842;
+            }
+
+            &:nth-child(2) {
+              width: 1px;
+              height: 3px;
+              background: #2F9842;
+            }
+
+            &:nth-child(3) {
+              width: 1px;
+              height: 7px;
+              background: #2F9842;
+            }
+
+            &:nth-child(4) {
+              width: 1px;
+              height: 5px;
+              background: #2F9842;
+            }
+
+            &:nth-child(5) {
+              width: 1px;
+              height: 10px;
+              background: #2F9842;
+            }
+          }
+        }
+
+        .flag {
+          margin-left: 15px;
+          position: relative;
+          top: 5.75px;
+          li {
+            margin: 0;
+            background: url("../img/Vector.png") no-repeat center;
+            background-size: contain;
+            width: 8px;
+            height: 4.5px;
+            &:nth-child(1) {
+              margin-bottom: 2.5px;
+            }
+            &:nth-child(2) {
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  .footer {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    background: #ffffff;
+    height: 67px;
+    justify-content: center;
+    font-family: PingFang SC;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 17px;
+
+    .zhaohe {
+      display: flex;
+      position: relative;
+      margin-right: 25px;
+      color: #2F9842;
+
+      .img {
+        position: relative;
+        top: -3.5px;
+        width: 24px;
+        height: 24px;
+        background: url("../img/image 26.png") no-repeat center;
+        background-size: contain;
+        margin-right: 2px;
+      }
+
+      .text {
+        width: 24px;
+      }
+    }
+
+    .gedan {
+      display: flex;
+      margin-left: 25px;
+      color: #979797;
+
+      .img {
+        background: url("../img/image 34.png") no-repeat center;
+        background-size: contain;
+        width: 17px;
+        height: 17px;
+        margin-right: 7px;
+      }
+
+      .text {
+        width: 24px;
+      }
+    }
+  }
+}

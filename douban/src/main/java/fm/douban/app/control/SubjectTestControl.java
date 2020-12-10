@@ -1,0 +1,51 @@
+package fm.douban.app.control;
+
+import fm.douban.model.Subject;
+import fm.douban.service.SubjectService;
+import fm.douban.util.SubjectUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+/**
+ * Created by pawncs on 2020/10/18.
+ */
+@RestController
+@RequestMapping("/test/subject")
+public class SubjectTestControl {
+    private final SubjectService subjectService;
+    @Autowired
+    public SubjectTestControl(SubjectService subjectService) {
+        this.subjectService = subjectService;
+    }
+
+    @RequestMapping("/add")
+    public Subject testAdd(){
+        Subject subject = new Subject();
+        subject.setId("0");
+        return subjectService.addSubject(subject);
+    }
+
+    @RequestMapping("/get")
+    public Subject testGet(){
+        return subjectService.get("0") ;
+    }
+    @RequestMapping("/getByType")
+    public List<Subject> testGetByType(){
+        return subjectService.getSubjects(SubjectUtil.TYPE_COLLECTION);
+    }
+    @RequestMapping("/getAll")
+    public List<Subject> testGetAll(){
+        return subjectService.getSubjects();
+    }
+    @RequestMapping("/getBySubType")
+    public List<Subject> testGetBySubType(){
+        return subjectService.getSubjects(SubjectUtil.TYPE_COLLECTION,SubjectUtil.TYPE_SUB_STYLE);
+    }
+    @RequestMapping("/del")
+    public boolean testDelete(){
+        return subjectService.delete("0");
+    }
+}
