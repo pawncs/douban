@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="explore" th:fragment="explore">
+
+    <div class="moreMhzSelect">
+        <div class="mineMhz"></div>
+        <div class="doubanMhz"></div>
+    </div>
+    <div class="artistStart">
+        <div class="text">从艺术家出发</div>
+        <div class="img"></div>
+    </div>
+
+    <!--/*@thymesVar id="artistDatas" type="java.util.List"*/-->
+    <div class="artists">
+        <div class="artist" th:each="artistData : ${artistDatas}">
+            <img class="img" th:src="${artistData.avatar}"/>
+            <div class="name" th:text="${artistData.name}+' 系'">DATA</div>
+            <div class="other" th:text="${artistData.name}+' 及其相似的艺术家们'">DATA</div>
+        </div>
+    </div>
+
+    <div class="moreMhz">加载更多兆赫</div>
+
+
+    <!--/*@thymesVar id="mhzViewModels" type="java.util.List"*/-->
+    <div class="tree" th:each="mhzViewModel : ${mhzViewModels}">
+        <!--/*@thymesVar id="title" type="java.lang.String"*/-->
+        <div class="title" th:text="${mhzViewModel.title}">TITLE</div>
+        <!--/*@thymesVar id="subjects" type="java.util.List"*/-->
+        <div class="subjects">
+            <div class="subject" th:each="subject : ${mhzViewModel.subjects}">
+                <!--/*@thymesVar id="name" type="java.lang.String"*/-->
+                <div class="name" th:text="${subject.name}"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

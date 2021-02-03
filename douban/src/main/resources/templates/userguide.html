@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="userguide" th:fragment="userguide">
+    <link rel="stylesheet" href="scss/init.css">
+    <link rel="stylesheet" href="scss/userguide.css">
+    <div class="login"><div class="text">已有账号登录</div><div class="img"></div></div>
+    <div class="title">挑选你喜欢的艺术家，开启私人音乐之旅</div>
+    <div class="lists">
+        <div class="singer" th:each="singer : ${singers}">
+            <img th:src="${singer.avatar}">
+            <div class="text" th:text="${singer.name}">ddd</div>
+            <div class="like">喜欢</div>
+        </div>
+    </div>
+    <div class="select">
+        <div class="first"><div class="img"></div><div class="text">换一批</div></div>
+        <div class="second"><div class="img"></div><div class="text">自己搜</div></div>
+    </div>
+    <div class="liked">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="footer">
+        先选这些，开始收听从<span>OneRepublic</span> 出发的音乐。
+        <div class="img"></div>
+    </div>
+    <div class="none">
+        <div class="liked">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div class="button"><div class="img"></div><div class="text">我的私人兆赫</div></div>
+    </div>
+    <script th:inline="javascript">
+        let singersData  = [[${singers}]];
+    </script>>
+    <script th:inline="javascript" src="js/userguide.js">
+    </script>
+</div>
+
+</body>
+</html>

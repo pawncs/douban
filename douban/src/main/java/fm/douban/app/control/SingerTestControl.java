@@ -20,34 +20,36 @@ public class SingerTestControl {
     public SingerTestControl(SingerService singerService){
         this.singerService = singerService;
     }
-    @RequestMapping("/add")
-    Singer testAddSinger(){
-        Singer singer = new Singer();
-        singer.setId("0");
-        singer.setName("BOBO");
-        return singerService.addSinger(singer);
-    }
-    @RequestMapping("/getAll")
-    List<Singer> testGetAll(){
-        return singerService.getAll();
-    }
-    @RequestMapping("/getOne")
-    Singer testGetSinger(){
-        return singerService.get("0");
-    }
-    @RequestMapping("/get")
-    Singer testGetSingerById(@RequestParam("id")String id){
-        return singerService.get(id);
-    }
-    @RequestMapping("/modify")
-    boolean testModifySinger(){
-        Singer singer = new Singer();
-        singer.setId("0");
-        singer.setName("QQQ");
-        return singerService.modify(singer);
-    }
-    @RequestMapping("/del")
-    boolean testDelSinger(){
-        return singerService.delete("0");
-    }
+        @RequestMapping("/add")
+        Singer testAddSinger(){
+            Singer singer = new Singer();
+            singer.setId("0");
+            singer.setName("BOBO");
+            return singerService.addSinger(singer);
+        }
+        @RequestMapping("/getAll")
+        List<Singer> testGetAll(){
+            return singerService.getAll();
+        }
+        @RequestMapping("/getOne")
+        Singer testGetSinger(){
+            return singerService.get("0");
+        }
+        @RequestMapping("/get")
+        Singer testGetSingerById(@RequestParam("id")String id){
+            return singerService.get(id);
+        }
+        @RequestMapping("/modify")
+        boolean testModifySinger(){
+            Singer singer = new Singer();
+            singer.setId("0");
+            singer.setName("QQQ");
+            return singerService.modify(singer);
+        }
+        @RequestMapping("/del")
+        boolean testDelSinger(){
+            return singerService.delete("0");
+        }
+
+
 }
