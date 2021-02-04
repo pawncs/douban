@@ -30,6 +30,7 @@ public class SubjectServiceImpl implements SubjectService {
     public Subject addSubject(Subject subject) {
         subject.setGmtCreated(LocalDateTime.now());
         subject.setGmtModified(LocalDateTime.now());
+        System.out.println(subject.toString());
         return mongoTemplate.insert(subject);
     }
 

@@ -102,8 +102,8 @@ public class MainControl {
 //                    logger.info(subject.toString());
 //                    break;
                 default:
-                    logger.error("subjuctSubType错误");
-                    break;
+                    //logger.error("subjuctSubType错误");
+                    //break;
             }
         }
         List<Singer> list = singerService.getAll();

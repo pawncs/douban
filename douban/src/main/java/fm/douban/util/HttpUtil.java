@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by pawncs on 2020/10/18.
@@ -48,7 +49,8 @@ public class HttpUtil {
         }
         Request request = reqBuilder.build();
 
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60000, TimeUnit.MILLISECONDS).build();
         Call call = okHttpClient.newCall(request);
         String result = null;
         try {

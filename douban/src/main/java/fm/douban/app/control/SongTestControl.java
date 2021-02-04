@@ -6,6 +6,7 @@ import fm.douban.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -26,8 +27,8 @@ public class SongTestControl {
         return songService.add(song);
     }
     @RequestMapping(value = "/get")
-    public Song testGet(){
-        return songService.get("0");
+    public Song testGet(@RequestParam("id")String id){
+        return songService.get(id);
     }
     @RequestMapping("list")
     public Page<Song> testList(){

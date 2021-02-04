@@ -30,7 +30,7 @@ public class SubjectTestControl {
 
     @RequestMapping("/get")
     public Subject testGet(){
-        return subjectService.get("0") ;
+        return subjectService.get("13") ;
     }
     @RequestMapping("/getByType")
     public List<Subject> testGetByType(){
@@ -42,10 +42,14 @@ public class SubjectTestControl {
     }
     @RequestMapping("/getBySubType")
     public List<Subject> testGetBySubType(){
-        return subjectService.getSubjects(SubjectUtil.TYPE_COLLECTION,SubjectUtil.TYPE_SUB_STYLE);
+        return subjectService.getSubjects(SubjectUtil.TYPE_MHZ,SubjectUtil.TYPE_SUB_ARTIST);
     }
     @RequestMapping("/del")
     public boolean testDelete(){
         return subjectService.delete("0");
+    }
+    @RequestMapping("/delAll")
+    public long testDelete2(){
+        return subjectService.deleteAll();
     }
 }
