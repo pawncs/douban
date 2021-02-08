@@ -5,6 +5,7 @@ import fm.douban.service.SubjectService;
 import fm.douban.util.SubjectUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -29,8 +30,8 @@ public class SubjectTestControl {
     }
 
     @RequestMapping("/get")
-    public Subject testGet(){
-        return subjectService.get("13") ;
+    public Subject testGet(@RequestParam("id")String id){
+        return subjectService.get(id) ;
     }
     @RequestMapping("/getByType")
     public List<Subject> testGetByType(){

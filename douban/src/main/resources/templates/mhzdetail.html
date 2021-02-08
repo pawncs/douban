@@ -3,11 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="referrer" content="no-referrer"/>
+    <link rel="stylesheet" href="scss/mhzdetail.css">
+    <link rel="stylesheet" href="scss/init.css">
 </head>
 <body>
-<div th:text="${subject}">1</div>
-<div th:text="${songs}">2</div>
-<div th:text="${singer}">3</div>
-<div th:text="${simSingers}">4</div>
+<div class="mhzdetail" th:fragment="mhzdetail">
+    <div class="esc"></div>
+    <div class="share">分享</div>
+    <div class="top">
+        <div class="subject">
+            <div class="img"><img th:src="${subject.cover}"></div>
+            <div class="name" th:text="${subject.name}"></div>
+            <div class="like">喜欢</div>
+        </div>
+    </div>
+    <div class="middle">
+        <div class="title">
+            <div class="triangle"></div>
+            <div class="text">全部精选歌曲</div>
+        </div>
+        <div class="songs">
+            <div class="song" th:each="song,iterStat : ${songs}">
+                <div class="img"><img th:src="${song.cover}"></div>
+                <div class="text" th:text="${iterStat.index}+1+'.'+${song.name}"></div>
+            </div>
+        </div>
+        <div class="more">查看全部精选歌曲</div>
+    </div>
+    <div class="bottom">
+        <div class="title">
+            <div class="triangle"></div>
+            <div class="text" th:text="${subject.name}"></div>
+        </div>
+        <div class="describe">该兆赫可能包含以下相似艺术家的歌曲</div>
+        <div class="artists">
+            <div class="artist" th:each="artist : ${simSingers}">
+                <div class="img"><img th:src="${artist.avatar}?${artist.avatar}:_" src="img/image%205.png"></div>
+                <div class="name" th:text="${artist.name}"></div>
+            </div>
+        </div>
+    </div>
+<!--    <div th:text="${singer}">3</div>-->
+<!--    <div th:text="${simSingers}">4</div>-->
+</div>
+
 </body>
 </html>
