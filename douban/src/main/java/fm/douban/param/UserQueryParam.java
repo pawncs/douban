@@ -1,11 +1,11 @@
 package fm.douban.param;
 
-import fm.douban.model.Song;
+import fm.douban.model.User;
 
 /**
- * Created by pawncs on 2020/10/15.
+ * Created by pawncs on 2021/2/18.
  */
-public class SongQueryParam extends Song {
+public class UserQueryParam extends User {
     private int pageNum = 0;
     private int pageSize = 10;
 

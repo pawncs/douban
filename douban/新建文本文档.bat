@@ -1,3 +1,3 @@
 git add -A
-git commit -m"新添加"
+git commit -m"new commit"
 git push origin master

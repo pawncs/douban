@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
 /**
  * Created by pawncs on 2020/10/18.
  */
-@Controller
+@Service
 public class SubjectServiceImpl implements SubjectService {
     MongoTemplate mongoTemplate;
     SubjectUtil subjectUtil;

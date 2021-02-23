@@ -36,6 +36,7 @@ public class SubjectControl {
         this.logger = Logger.getLogger(SubjectControl.class);
     }
 
+    //艺术家详情
     @GetMapping(path = "/artist")
     public String mhzDetail(Model model, @RequestParam(name = "subjectId") String subjectId) {
         //传递subject给模板
@@ -69,4 +70,12 @@ public class SubjectControl {
         model.addAttribute("simSingers",simSingers);
         return "mhzdetail";
     }
+
+    //歌单列表
+    @GetMapping(path = "/collection")
+    String collection(Model model){
+        //todo 起个头
+        return null;
+    }
+
 }

@@ -62,11 +62,18 @@ public class SongServiceImpl implements SongService {
         }else if(criteriaList.size() > 1){
             allCriteria = new Criteria().andOperator(criteriaList.get(0),criteriaList.get(1));
         }
+        Query query  = new Query();
+        if(allCriteria != null){
+            query.addCriteria(allCriteria);
+           // System.out.println(allCriteria.getCriteriaObject().toJson());
+        }
+//        else{
+//           System.out.println("criteria null");
+//        }
 
-        Query query ;
-        query = allCriteria==null ? new Query(): new Query(allCriteria);
         query.with(pageable);
         List<Song> songs = mongoTemplate.find(query, Song.class);
+       // System.out.println(songs.toString());
         long count = mongoTemplate.count(query, Song.class);
         return PageableExecutionUtils.getPage(songs, pageable, new LongSupplier() {
             @Override

@@ -1,0 +1,103 @@
+.search {
+  width: 1040px;
+  height: 831px;
+  border: 1px solid #E4E4E4;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.8);
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.search .searchBox {
+  position: relative;
+  margin-top: 230px;
+  display: flex;
+  align-items: center;
+}
+.search .searchBox::before {
+  cursor: pointer;
+  display: block;
+  content: "";
+  position: absolute;
+  top: 19px;
+  left: 32.6px;
+  width: 12px;
+  height: 12px;
+  background: url("../img/Page 1.png") center no-repeat;
+  background-size: contain;
+}
+.search .searchBox input {
+  margin-right: 20px;
+  background: #FFFFFF;
+  border: 1px solid #E6E6E6;
+  box-sizing: border-box;
+  border-radius: 50px;
+  width: 788px;
+  height: 50px;
+  outline: none;
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+  color: #000000;
+  padding-left: 57px;
+}
+.search .searchBox input:focus {
+  background: #f2f5f5;
+}
+.search .searchBox input::-webkit-input-placeholder {
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+  color: #969696;
+}
+.search .searchBox .cancel {
+  cursor: pointer;
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #777777;
+}
+.search .searchResponse {
+  width: 760px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.search .searchResponse .searchOne {
+  display: flex;
+  margin-left: 65px;
+  margin-top: 30px;
+  flex-direction: column;
+}
+.search .searchResponse .searchOne .img, .search .searchResponse .searchOne .img > img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.search .searchResponse .searchOne .img {
+  border: #7E7E7E solid 0.5px;
+}
+.search .searchResponse .searchOne .name {
+  margin-top: 10px;
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+  color: #000000;
+  text-align: center;
+}
+.search .searchResponse .searchOne-0, .search .searchResponse .searchOne-5 {
+  margin-left: 0;
+}
+
+/*# sourceMappingURL=search.css.map */

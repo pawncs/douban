@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="sign" th:fragment="sign">
+    <link rel="stylesheet" href="scss/init.css">
+    <link rel="stylesheet" href="scss/sign.css">
+    <div class="back">
+        <div class="img"></div>
+        <div class="text">返回</div>
+    </div>
+    <form action="/register" method="post">
+
+        <div class="title">
+            <div class="login"><span>密码登录</span></div>
+            <div class="register"><span>注册</span></div>
+        </div>
+        <input class="name" type="text" name="name" placeholder="用户名">
+        <input class="password" type="password" name="password" placeholder="登录密码">
+        <input class="mobile" type="text" name="mobile" placeholder="手机号">
+
+        <button type="submit">注册豆瓣</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"><html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div class="login" th:fragment="login">
+    <link rel="stylesheet" href="scss/init.css">
+    <link rel="stylesheet" href="scss/login.css">
+    <div class="back">
+        <div class="img"></div>
+        <div class="text">返回</div>
+    </div>
+    <form action="/authenticate" method="post">
+
+        <div class="title">
+            <div class="authenticate"><span>密码登录</span></div>
+            <div class="register"><span>注册</span></div>
+        </div>
+        <div class="hide"><div class="circle"><div class="line"></div></div><div class="text">用户名或密码错误</div></div>
+        <input type="text" name="name" placeholder="用户名">
+        <input type="password" name="password" placeholder="密码">
+        <button type="submit">提交</button>
+        <div class="select"><input type="checkbox" name="isAutoLogin"><div>下次自动登录</div></div>
+    </form>
+<!--    <script src="js/loginJS.js"></script>-->
+</div>
+</body>
+</html>

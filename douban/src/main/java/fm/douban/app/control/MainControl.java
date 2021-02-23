@@ -11,12 +11,17 @@ import fm.douban.service.SubjectService;
 import fm.douban.util.SubjectUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by pawncs on 2020/10/26.
@@ -119,5 +124,26 @@ public class MainControl {
         model.addAttribute("mhzViewModels", mhzViewModels);
 
         return "index";
+    }
+
+    @GetMapping(path = "/search")
+    public String search(Model model){
+        //todo
+        return "search";
+    }
+    @GetMapping(path = "searchContent")
+    @ResponseBody
+    public Map searchContent(@RequestParam(name = "keyword") String keyword){
+        Map<String,Page<Song>> map = new HashMap<>();
+        Page<Song> songList;
+        SongQueryParam songQueryParam = new SongQueryParam();
+        //List<Song>  allSongs = songService.list(songQueryParam).getContent();
+        songQueryParam.setName(keyword);
+        //System.out.println(".,."+allSongs.get(0).getName());
+        songList = songService.list(songQueryParam);
+
+        map.put("songs",songList);
+        //System.out.println(map.get("songs").getContent().toString());
+        return map;
     }
 }
