@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="collection" th:fragment="collection">
+    <!--    <meta name="response-data" th:value="${datas}"/>-->
+    <link rel="stylesheet" href="scss/init.css">
+    <link rel="stylesheet" href="scss/collection.css">
+    <div class="collectionBox">
+        <div class="list-item" th:each="data,i:${datas}">
+            <meta th:name="subjectId" th:value="${data[0].id}">
+            <div class="cover"><img th:src="${data[0].cover}" alt=""></div>
+            <div class="name" th:text="${data[0].name}">
+            </div>
+            <div class="singerName">
+                <div th:text="${data[1]}+'创建'"></div>
+            </div>
+            <div class="songs" th:each="song:${data[2]}">
+                <div th:text="${song.name}"></div>
+            </div>
+            <div class="collection-information">
+                <p>曲目 <span th:text="${data[2].size()}"></span> 收藏<span th:text="0"></span></p>
+            </div>
+            <div class="blank_line"></div>
+        </div>
+    </div>
+    <script>
+        let list_items = document.querySelectorAll(".list-item");
+        for (let i = 0; i < list_items.length; i++) {
+            list_items[i].addEventListener("click", function () {
+
+                // let data = {
+                //     subjectId: subjectId
+                // }
+
+                // fetch(
+                //     `/collectiondetail?subjectId=` + subjectId,
+                //     {
+                //         method: 'GET',
+                //         headers: {
+                //             'content-type': 'application/json'
+                //         }
+                //     }
+                // ).then(function (response) {
+                //
+                // })
+                location.href = `/collectiondetail?subjectId=` + this.querySelector("meta").getAttribute("value");
+            });
+        }
+    </script>
+</div>
+
+</body>
+</html>

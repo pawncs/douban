@@ -1,0 +1,76 @@
+.collection {
+  margin: auto;
+  width: 1040px;
+  position: relative;
+  padding-top: 60px;
+}
+.collection .collectionBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: absolute;
+  left: 29px;
+}
+.collection .collectionBox .list-item {
+  position: relative;
+  width: 150px;
+  flex: 20%;
+  margin-bottom: 40px;
+  cursor: pointer;
+}
+.collection .collectionBox .list-item div {
+  width: 150px;
+}
+.collection .collectionBox .list-item .cover img {
+  width: 150px;
+  height: 150px;
+}
+.collection .collectionBox .list-item .name {
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+}
+.collection .collectionBox .list-item .singerName {
+  margin-bottom: 10px;
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+  color: #000000;
+  opacity: 0.4;
+}
+.collection .collectionBox .list-item .songs div {
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+  color: #000000;
+  opacity: 0.4;
+  margin-bottom: 4px;
+}
+.collection .collectionBox .list-item .collection-information {
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+  color: #000000;
+  opacity: 0.4;
+}
+.collection .collectionBox .list-item .blank_line {
+  position: absolute;
+  bottom: 0;
+  width: 150px;
+  height: 1px;
+  background: #EAEAEA;
+}
+
+/*# sourceMappingURL=collection.css.map */

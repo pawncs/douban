@@ -11,6 +11,7 @@ public interface SubjectService {
     Subject addSubject(Subject subject);
     Subject get(String subjectId);
     List<Subject> getSubjects(String type);
+    List<Subject> getSubjects(Subject subjectParam);
     List<Subject> getSubjects();
     List<Subject> getSubjects(String type,String subType);
     boolean modifySongList(Subject subject);

@@ -1,0 +1,142 @@
+.collectiondetail {
+  padding-top: 66px;
+  padding-bottom: 92px;
+  width: 786px;
+  position: relative;
+  margin: 79px auto auto;
+  background: #FFFFFF;
+  border: 1px solid #E4E4E4;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.collectiondetail > div {
+  width: 586px;
+}
+.collectiondetail .head {
+  display: flex;
+}
+.collectiondetail .head > .img {
+  position: relative;
+  width: 180px;
+  height: 180px;
+}
+.collectiondetail .head > .img img {
+  width: 180px;
+  height: 180px;
+}
+.collectiondetail .head > .img .play {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.collectiondetail .head > .img .play .img {
+  background: url("../img/Polygon 1.png") center no-repeat;
+  background-size: contain;
+  width: 17.6px;
+  height: 24px;
+  z-index: 2;
+}
+.collectiondetail .head > .img .play::after {
+  position: absolute;
+  content: "";
+  display: block;
+  background: #7AD940;
+  opacity: 0.56;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.collectiondetail .head .head-right {
+  margin-left: 40px;
+}
+.collectiondetail .head .head-right .title {
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 42px;
+  /* identical to box height */
+  color: #000000;
+}
+.collectiondetail .head .head-right .info {
+  margin-top: 5px;
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+  color: #ADADAD;
+}
+.collectiondetail .select {
+  margin-bottom: 21px;
+  margin-top: 30px;
+  display: flex;
+  position: relative;
+}
+.collectiondetail .select > div {
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+  color: #000000;
+  opacity: 0.4;
+  cursor: pointer;
+}
+.collectiondetail .select > div:first-child {
+  margin-right: 30px;
+}
+.collectiondetail .select .selected {
+  opacity: 1;
+  cursor: default;
+}
+.collectiondetail .select::after {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #EAEAEA;
+  width: 586px;
+  height: 1px;
+  top: 27px;
+}
+.collectiondetail .detail > div {
+  display: none;
+}
+.collectiondetail .detail .selected {
+  display: block;
+}
+.collectiondetail .detail .songs .song-item, .collectiondetail .detail .otherSubject .subject-item {
+  display: flex;
+  align-items: center;
+  margin-top: 21px;
+}
+.collectiondetail .detail .songs .song-item .img, .collectiondetail .detail .otherSubject .subject-item .img {
+  width: 20px;
+  height: 20px;
+}
+.collectiondetail .detail .songs .song-item .img img, .collectiondetail .detail .otherSubject .subject-item .img img {
+  width: 20px;
+  height: 20px;
+}
+.collectiondetail .detail .songs .song-item .text, .collectiondetail .detail .otherSubject .subject-item .text {
+  margin-left: 10px;
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+  color: #000000;
+}
+
+/*# sourceMappingURL=collectiondetail.css.map */

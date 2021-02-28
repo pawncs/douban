@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="collectiondetail" th:fragment="collectiondetal">
+    <meta name="referrer" content="no-referrer"/>
+    <link rel="stylesheet" href="scss/init.css">
+    <link rel="stylesheet" href="scss/collectiondetail.css">
+    <div class="head">
+        <div class="img">
+            <img th:src="${subject.cover}" alt="">
+            <div class="play">
+                <div class="img"></div>
+            </div>
+        </div>
+        <div class="head-right">
+            <div class="title" th:text="${subject.name}"></div>
+            <div class="info">
+                <span th:text="${subject.master}"></span>创建<span th:text="${songs.size()}"></span>首歌曲 <span th:text="${subject.gmtCreated}"></span>
+            </div>
+        </div>
+    </div>
+    <div class="select">
+        <div class="songList selected">
+            歌曲列表(<span th:text="${songs.size()}"></span>)
+        </div>
+        <div class="subjectList">
+
+           <span th:text="${subject.master}"></span>的其他歌单(<span th:text="${otherSubjects} ? ${otherSubjects.size()} : 0"></span>)
+        </div>
+        <div class="line"></div>
+    </div>
+    <div class="detail">
+        <div class="songs selected">
+            <div class="song-item" th:each="song,i:${songs}">
+                <div class="img"><img th:src="${song.cover}" alt=""></div>
+                <div class="text" th:text="${i.count}+'.'+${song.name}"></div>
+            </div>
+        </div>
+        <div class="otherSubject" >
+            <div class="subject-item" th:each="otherSubject,i:${otherSubjects}">
+                <div class="img">
+                    <img th:src="${otherSubject.cover}" alt="">
+                </div>
+                <div class="text" th:text="${i.count}+'.'+${otherSubject.name}"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let songButton = document.querySelector(".select .songList");
+        let subjectButton = document.querySelector(".select .subjectList");
+        let songDetail = document.querySelector(".detail .songs");
+        let subjectDetail = document.querySelector(".detail .otherSubject");
+        function click(selectedButton,selectedDetail,b,s){
+
+            selectedButton.classList.add("selected");
+            selectedDetail.classList.add("selected");
+            b.classList.remove("selected");
+            s.classList.remove("selected");
+
+        }
+
+        songButton.addEventListener("click",function () {
+            if(!this.classList.contains("selected")){
+                click(songButton,songDetail,subjectButton,subjectDetail);
+            }
+
+        });
+        subjectButton.addEventListener("click",function () {
+            if(!this.classList.contains("selected")){
+                click(subjectButton,subjectDetail,songButton,songDetail);
+            }
+
+        });
+    </script>
+</div>
+
+
+</body>
+</html>
