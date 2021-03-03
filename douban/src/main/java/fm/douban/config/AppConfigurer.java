@@ -23,5 +23,9 @@ public class AppConfigurer implements WebMvcConfigurer {
                 .excludePathPatterns("/register")        // 注册操作不需要登录
                 .excludePathPatterns("/scss/**")           // 静态资源为文件不需要登录
                 .excludePathPatterns("/error");            // 系统错误页面不需要登录
+
+//        registry.addInterceptor(new UserInterceptor()).addPathPatterns("/**")
+//                .excludePathPatterns("/**"); // 登录操作不需要登录需要登录
+
     }
 }

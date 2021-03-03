@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="my" th:fragment="my">
+    <link rel="stylesheet" href="scss/init.css">
+    <link rel="stylesheet" href="scss/my.css">
+    <div class="my-title">我的红心</div>
+    <div class="redHeartSongs">
+        <div class="songsTitle"><div class="img"></div><div class="text" th:text="${songs.size()}+'首红心单曲'"></div></div>
+        <div class="line"></div>
+        <div class="songs" th:each="song:${songs}">
+
+        </div>
+    </div>
+
+    <div class="footer" th:replace="footer::footer"></div>
+</div>
+
+</body>
+</html>

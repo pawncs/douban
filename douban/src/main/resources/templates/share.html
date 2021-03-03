@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="share" th:fragment="share">
+    <link rel="stylesheet" href="scss/init.css">
+    <link rel="stylesheet" href="scss/share.css">
+    <div class="title">主页</div>
+    <div class="line"></div>
+    <div class="qrcode"></div>
+    <div class="info">扫描分享</div>
+    <script src="js/qrcode-min.js"></script>
+    <script>
+        let qrCode = document.querySelector('.qrcode');
+        new QRCode(qrCode, 'http://localhost:8080/index');
+        qrCode.querySelector("img").style.width = "100px";
+    </script>
+</div>
+</body>
+</html>

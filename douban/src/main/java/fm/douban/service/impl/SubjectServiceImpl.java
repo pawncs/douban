@@ -58,31 +58,56 @@ public class SubjectServiceImpl implements SubjectService {
             logger.error("input subjectParam is not correct.");
             return null;
         }
-        Criteria criteria = new Criteria();
+//        Criteria criteria = new Criteria();
+//        String type = subjectParam.getSubjectType();
+//        String subType = subjectParam.getSubjectSubType();
+//        String id = subjectParam.getId();
+//        String master = subjectParam.getMaster();
+//        String name = subjectParam.getName();
+//        //todo 多条件查询不能用多个and
+//        if (type != null && !type.equals("")) {
+//            criteria.andOperator(Criteria.where("subjectType").is(type));
+//        }
+//        if (subType != null && !subType.equals("")) {
+//            criteria.andOperator(Criteria.where("subjectSubType").is(subType));
+//        }
+//        if (id != null && !id.equals("")) {
+//            criteria.andOperator(Criteria.where("id").is(id));
+//        }
+//        if (master != null && !master.equals("")) {
+//            criteria.andOperator(Criteria.where("master").is(master));
+//        }
+//        if (name != null && !name.equals("")) {
+//            criteria.andOperator(Criteria.where("name").is(name));
+//        }
+//
+//
+//        Query query = new Query(criteria);
+//        return mongoTemplate.find(query, Subject.class);
+        Query condition = new Query();
         String type = subjectParam.getSubjectType();
         String subType = subjectParam.getSubjectSubType();
         String id = subjectParam.getId();
         String master = subjectParam.getMaster();
         String name = subjectParam.getName();
         if (type != null && !type.equals("")) {
-            criteria.andOperator(Criteria.where("subjectType").is(type));
+            condition.addCriteria(Criteria.where("subjectType").is(type));
         }
         if (subType != null && !subType.equals("")) {
-            criteria.andOperator(Criteria.where("subjectSubType").is(subType));
+            condition.addCriteria(Criteria.where("subjectSubType").is(subType));
         }
         if (id != null && !id.equals("")) {
-            criteria.andOperator(Criteria.where("id").is(id));
+            condition.addCriteria(Criteria.where("id").is(id));
         }
         if (master != null && !master.equals("")) {
-            criteria.andOperator(Criteria.where("master").is(master));
+            condition.addCriteria(Criteria.where("master").is(master));
         }
         if (name != null && !name.equals("")) {
-            criteria.andOperator(Criteria.where("name").is(name));
+            condition.addCriteria(Criteria.where("name").is(name));
         }
 
 
-        Query query = new Query(criteria);
-        return mongoTemplate.find(query, Subject.class);
+        return mongoTemplate.find(condition, Subject.class);
     }
 
     @Override

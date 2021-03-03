@@ -1,0 +1,42 @@
+.share {
+  position: absolute;
+  top: 153px;
+  left: 612px;
+  width: 216px;
+  height: 268px;
+  background: #FFFFFF;
+  border: 1px solid #EAEAEA;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.share .title {
+  margin-top: 14px;
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+  color: #000000;
+}
+.share .line {
+  margin-top: 14px;
+  margin-bottom: 10px;
+  width: 160px;
+  height: 1px;
+  background: #F1F1F1;
+}
+.share .info {
+  margin-top: 5px;
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+  color: #BABABA;
+}
+
+/*# sourceMappingURL=share.css.map */

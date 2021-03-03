@@ -1,13 +1,12 @@
 package fm.douban.app.control;
 
-import fm.douban.model.MhzViewModel;
-import fm.douban.model.Singer;
-import fm.douban.model.Song;
-import fm.douban.model.Subject;
+import fm.douban.model.*;
 import fm.douban.param.SongQueryParam;
+import fm.douban.service.FavoriteService;
 import fm.douban.service.SingerService;
 import fm.douban.service.SongService;
 import fm.douban.service.SubjectService;
+import fm.douban.util.FavoriteUtil;
 import fm.douban.util.SubjectUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,13 +32,16 @@ public class MainControl {
     SongService songService;
     SingerService singerService;
     SubjectService subjectService;
+    FavoriteService favoriteService;
     Logger logger;
 
     @Autowired
-    public MainControl(SongService songService, SingerService singerService, SubjectService subjectService) {
+    public MainControl(SongService songService, SingerService singerService, SubjectService subjectService,
+                       FavoriteService favoriteService) {
         this.songService = songService;
         this.singerService = singerService;
         this.subjectService = subjectService;
+        this.favoriteService = favoriteService;
         this.logger = Logger.getLogger(MainControl.class);
     }
 
@@ -127,14 +131,15 @@ public class MainControl {
     }
 
     @GetMapping(path = "/search")
-    public String search(Model model){
+    public String search(Model model) {
         //todo
         return "search";
     }
+
     @GetMapping(path = "searchContent")
     @ResponseBody
-    public Map searchContent(@RequestParam(name = "keyword") String keyword){
-        Map<String,Page<Song>> map = new HashMap<>();
+    public Map searchContent(@RequestParam(name = "keyword") String keyword) {
+        Map<String, Page<Song>> map = new HashMap<>();
         Page<Song> songList;
         SongQueryParam songQueryParam = new SongQueryParam();
         //List<Song>  allSongs = songService.list(songQueryParam).getContent();
@@ -142,8 +147,53 @@ public class MainControl {
         //System.out.println(".,."+allSongs.get(0).getName());
         songList = songService.list(songQueryParam);
 
-        map.put("songs",songList);
+        map.put("songs", songList);
         //System.out.println(map.get("songs").getContent().toString());
         return map;
+    }
+
+    //我的页面
+    @GetMapping(path = "/my")
+    public String myPage(Model model,
+                         HttpServletRequest request,
+                         HttpServletResponse response) {
+        Favorite favorite = new Favorite();
+        favorite.setType(FavoriteUtil.TYPE_RED_HEART);
+        favorite.setUserId(((UserLoginInfo)request.getSession().getAttribute("userLoginInfo")).getUserId());
+        List<Favorite> list = favoriteService.list(favorite);
+        model.addAttribute("favorites",list);
+        //没懂，查询已经点了红心的歌曲是这样吗
+        List<Favorite> songs = new ArrayList<>();
+        for(Favorite f:list){
+            if(f.getItemType().equals(FavoriteUtil.ITEM_TYPE_SONG)){
+                songs.add(f);
+            }
+        }
+        model.addAttribute("songs",songs);
+        return "my";
+    }
+
+    /**
+     * 喜欢或不喜欢操作
+     * 已经喜欢，则删除，表示执行不喜欢操作
+     * 还没有喜欢则记录，则新增，表示执行喜欢操作
+     */
+    @GetMapping(path = "/fav")
+    @ResponseBody
+    public Map doFav(@RequestParam(name = "itemType") String itemType,
+                     @RequestParam(name = "itemId") String itemId,
+                     HttpServletRequest request,
+                     HttpServletResponse response) {
+        Map returnData = new HashMap();
+        Favorite favorite = new Favorite();
+        favorite.setItemId(itemId);
+        favorite.setItemType(itemType);
+        favorite.setType(FavoriteUtil.TYPE_RED_HEART);
+        favorite.setUserId(((UserLoginInfo)request.getSession().getAttribute("userLoginInfo")).getUserId());
+        if(!favoriteService.delete(favorite)){
+            favoriteService.add(favorite);
+        }
+        returnData.put("message","successful");
+        return returnData;
     }
 }

@@ -1,0 +1,68 @@
+.my {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .my-title {
+    font-family: PingFang SC;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 17px;
+    /* identical to box height */
+
+
+    color: #2F9842;
+
+
+    margin-bottom: 50px;
+  }
+
+  .redHeartSongs {
+    width: 700px;
+    .songsTitle {
+      display: flex;
+      align-items: center;
+      &>.img {
+        width: 42px;
+        height: 42px;
+
+        background: #FF2C56;
+
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &::after{
+          display: block;
+          content: "";
+          background: url("../img/Polygon 1.png") center no-repeat;
+          background-size: contain;
+          width: 16px;
+          height: 24px;
+        }
+      }
+
+      &>.text {
+        margin-left: 20px;
+        font-family: PingFang SC;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 17px;
+        /* identical to box height */
+
+
+        color: #9C9C9C;
+      }
+    }
+
+    .line {
+      width: 700px;
+      height: 1px;
+
+      background: #EAEAEA;
+      margin-top: 25px;
+    }
+  }
+}
