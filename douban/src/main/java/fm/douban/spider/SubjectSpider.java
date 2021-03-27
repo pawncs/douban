@@ -25,6 +25,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Created by pawncs on 2020/10/18.
@@ -47,15 +48,16 @@ public class SubjectSpider {
     }
 
     //系统启动的时候自动执行爬取任务
-   //@PostConstruct
+   @PostConstruct
     public void init() {
-        doExcute();
+       CompletableFuture.supplyAsync(this::doExcute).thenAccept(a->{logger.info("subject spider end...");});
     }
 
     //开始爬取任务
-    public void doExcute() {
+    public boolean doExcute() {
         getSubjectData();
         getCollectionsData();
+        return true;
     }
 
     //执行爬取主题数据
@@ -65,7 +67,7 @@ public class SubjectSpider {
             String urlString = "https://fm.douban.com/j/v2/rec_channels?specific=all";
 
             String host = "fm.douban.com";
-            String cookie = "ll=\"118159\"; bid=DutGmrhEVeY; douban-fav-remind=1; _ga=GA1.2.159710958.1603614066; __gads=ID=267e6b130124c008-22d5bb7168c40043:T=1603718991:RT=1603718991:S=ALNI_MbBSnjSqeA7oiYyWiOL4_iOsTKIjg; _vwo_uuid_v2=D2C1C69B98BDE7695C303D232C07FBB52|2d0db08722b6c02cd8023defa0f645e2; gr_user_id=78e672f6-9e74-4600-b714-fede39aa5dcd; viewed=\"2130190_34988786_1405212\"; __utma=30149280.1301095399.1601823804.1608516668.1611211198.8; __utmz=30149280.1611211198.8.7.utmcsr=so.com|utmccn=(referral)|utmcmd=referral|utmcct=/link";
+            String cookie = "viewed=\"2130190\"; bid=gLc5otfOl64; gr_user_id=cd04c9a8-cea8-4987-90e1-818c4dee7180; __utma=30149280.1418751380.1616244150.1616244150.1616244150.1; __utmz=30149280.1616244150.1.1.utmcsr=so.com|utmccn=(referral)|utmcmd=referral|utmcct=/link; __gads=ID=2028ef54f9439f8f-22a39718a3c600c9:T=1616244150:RT=1616244150:S=ALNI_MbalXDBjMc9APy7DFQ9XNtSRrYJkg";
             String content = httpUtil.getContent(urlString,
                     httpUtil.buildHeaderData(null, cookie, host));
 
@@ -100,12 +102,12 @@ public class SubjectSpider {
                 logger.info("判断非空完成");
                 //歌手
                 List artists = JSONObject.parseObject(channels.get("artist").toString(), List.class);
-                for (Object artistObject : artists) {
-                    Map artist = (Map) artistObject;
+                artists.forEach(a->{
+                    Map artist = (Map) a;
                     Singer singer = new Singer();
                     singer.setId(artist.get("artist_id").toString());
                     singer.setAvatar(artist.get("cover").toString());
-                    if (singerService.get(singer.getId()) != null) continue;
+                    if (singerService.get(singer.getId()) != null) return;
                     List relatedArtists = JSONObject.parseObject(artist.get("related_artists").toString(), List.class);
                     Map map = (Map) (relatedArtists.get(0));
                     singer.setName(map.get("name").toString());
@@ -113,12 +115,12 @@ public class SubjectSpider {
                         singer.setSimilarSingerIds(new ArrayList<>());
                     }
                     List similar = singer.getSimilarSingerIds();
-                    for (Object relatedArtistsObject : relatedArtists) {
-                        Map relatedArtist = (Map) relatedArtistsObject;
+                    relatedArtists.forEach(b->{
+                        Map relatedArtist = (Map) b;
                         similar.add(relatedArtist.get("id").toString());
-                    }
+                    });
                     singerService.addSinger(singer);
-                }
+                });
                 logger.info("开始进入副函数");
 //                //年代/语言
 //                List subjects = JSONObject.parseArray(channels.get("language").toString());
@@ -196,7 +198,7 @@ public class SubjectSpider {
 //        String host = "douban.fm";
         String url = "https://fm.douban.com/j/v2/playlist?channel=" + channelsId + "&kbps=128&client=s%3Amainsite%7Cy%3A3.0&app_name=radio_website&version=100&type=n";
         String referer = "https://fm.douban.com/j/v2/playlist?channel=1&kbps=128&client=s%3Amainsite%7Cy%3A3.0&app_name=radio_website&version=100&type=n";
-        String cookie = "ll=\"118159\"; bid=DutGmrhEVeY; douban-fav-remind=1; _ga=GA1.2.159710958.1603614066; __gads=ID=267e6b130124c008-22d5bb7168c40043:T=1603718991:RT=1603718991:S=ALNI_MbBSnjSqeA7oiYyWiOL4_iOsTKIjg; _vwo_uuid_v2=D2C1C69B98BDE7695C303D232C07FBB52|2d0db08722b6c02cd8023defa0f645e2; gr_user_id=78e672f6-9e74-4600-b714-fede39aa5dcd; viewed=\"2130190_34988786_1405212\"; __utma=30149280.1301095399.1601823804.1608516668.1611211198.8; __utmz=30149280.1611211198.8.7.utmcsr=so.com|utmccn=(referral)|utmcmd=referral|utmcct=/link";
+        String cookie = "viewed=\"2130190\"; bid=gLc5otfOl64; gr_user_id=cd04c9a8-cea8-4987-90e1-818c4dee7180; __utma=30149280.1418751380.1616244150.1616244150.1616244150.1; __utmz=30149280.1616244150.1.1.utmcsr=so.com|utmccn=(referral)|utmcmd=referral|utmcct=/link; __gads=ID=2028ef54f9439f8f-22a39718a3c600c9:T=1616244150:RT=1616244150:S=ALNI_MbalXDBjMc9APy7DFQ9XNtSRrYJkg";
         String host = "fm.douban.com";
         Map<String, String> headers = httpUtil.buildHeaderData(referer, cookie, host);
         String content = httpUtil.getContent(url, headers);
@@ -276,29 +278,29 @@ public class SubjectSpider {
         }
         List<String> list = subject.getSongIds();
         List songsObject = JSONArray.parseArray(content);
-        for (Object songObject : songsObject) {
-            Song realSong = JSONUtil.json2song(songObject.toString());
+        songsObject.forEach(a->{
+
+            Song realSong = JSONUtil.json2song(a.toString());
             if(songService.get(realSong.getId()) == null){
                 songService.add(realSong);
             }
-
-            Map song = (Map) songObject;
+            Map song = (Map) a;
             //添加歌手
             List singerList = JSONArray.parseArray(song.get("singers").toString());
-            for (Object singerObject : singerList) {
-                Map singer = (Map) singerObject;
-                if (singerService.get(singer.get("id").toString()) != null) continue;
+            singerList.forEach(b->{
+                Map singer = (Map) b;
+                if (singerService.get(singer.get("id").toString()) != null) return;
                 Singer singer1 = new Singer();
                 singer1.setName(singer.get("name").toString());
                 singer1.setId(singer.get("id").toString());
                 singer1.setAvatar(singer.get("avatar").toString());
                 //logger.info("singer:"+singer1.toString());
                 singerService.addSinger(singer1);
-            }
+            });
             //如果subject中有相同的歌曲则不添加
-            if (list.contains(song.get("sid").toString())) continue;
+            if (list.contains(song.get("sid").toString())) return;
             list.add(song.get("sid").toString());
-        }
+        });
     }
 
     //爬取歌单
@@ -308,11 +310,11 @@ public class SubjectSpider {
 //        String host = "douban.fm";
 //        String cookie = "bid=w7AcI3eV0i0; _ga=GA1.2.842490175.1603643254; _gid=GA1.2.953723139.1603643254; flag=\"ok\"";
         String host = "fm.douban.com";
-        String cookie = "ll=\"118159\"; bid=DutGmrhEVeY; douban-fav-remind=1; _ga=GA1.2.159710958.1603614066; __gads=ID=267e6b130124c008-22d5bb7168c40043:T=1603718991:RT=1603718991:S=ALNI_MbBSnjSqeA7oiYyWiOL4_iOsTKIjg; _vwo_uuid_v2=D2C1C69B98BDE7695C303D232C07FBB52|2d0db08722b6c02cd8023defa0f645e2; gr_user_id=78e672f6-9e74-4600-b714-fede39aa5dcd; viewed=\"2130190_34988786_1405212\"; __utma=30149280.1301095399.1601823804.1608516668.1611211198.8; __utmz=30149280.1611211198.8.7.utmcsr=so.com|utmccn=(referral)|utmcmd=referral|utmcct=/link";
+        String cookie = "viewed=\"2130190\"; bid=gLc5otfOl64; gr_user_id=cd04c9a8-cea8-4987-90e1-818c4dee7180; __utma=30149280.1418751380.1616244150.1616244150.1616244150.1; __utmz=30149280.1616244150.1.1.utmcsr=so.com|utmccn=(referral)|utmcmd=referral|utmcct=/link; __gads=ID=2028ef54f9439f8f-22a39718a3c600c9:T=1616244150:RT=1616244150:S=ALNI_MbalXDBjMc9APy7DFQ9XNtSRrYJkg";
         String content = httpUtil.getContent(url,
                 httpUtil.buildHeaderData(null, cookie, host));
         List json = JSONArray.parseArray(content);
-        for (Object object : json) {
+        json.forEach(object->{
             Map map = (Map) object;
             if (subjectService.get(map.get("id").toString()) == null) {
                 Subject subject = new Subject();
@@ -333,14 +335,10 @@ public class SubjectSpider {
 //                    //TODO 存入歌曲
 //                }
                 String s = getSubjectSongData(subject.getId());
-                if(subject.getId().equals("39213186")){
-                    logger.info(s);
-                }
                 addSong(subject,s);
                 subjectService.addSubject(subject);
             }
-
-        }
+        });
         logger.info("爬取歌单完成");
     }
 

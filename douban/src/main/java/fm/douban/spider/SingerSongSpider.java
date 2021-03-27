@@ -12,9 +12,11 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Created by pawncs on 2020/10/26.
@@ -34,28 +36,28 @@ public class SingerSongSpider {
         this.songService = songService;
         this.logger = Logger.getLogger(SingerSongSpider.class);
     }
-    //@PostConstruct
+    @PostConstruct
     public void init(){
-        doExcute();
+        CompletableFuture.supplyAsync(this::doExcute).thenAccept(a->{logger.info("singer spider end..");});
     }
-    public void doExcute(){
+    public boolean doExcute(){
         getSongDataBySingers();
+        return true;
     }
     private void getSongDataBySingers(){
         logger.info("开始根据所有歌手爬取歌曲和相关歌手");
-        String host = "douban.fm";
-        String cookie = "bid=w7AcI3eV0i0; _ga=GA1.2.842490175.1603643254; _gid=GA1.2.953723139.1603643254; flag=\"ok\"";
+        String host = "fm.douban.com";
+        String cookie ="viewed=\"2130190\"; bid=gLc5otfOl64; gr_user_id=cd04c9a8-cea8-4987-90e1-818c4dee7180; __utma=30149280.1418751380.1616244150.1616244150.1616244150.1; __utmz=30149280.1616244150.1.1.utmcsr=so.com|utmccn=(referral)|utmcmd=referral|utmcct=/link; __gads=ID=2028ef54f9439f8f-22a39718a3c600c9:T=1616244150:RT=1616244150:S=ALNI_MbalXDBjMc9APy7DFQ9XNtSRrYJkg";
         List<Singer> singers = singerService.getAll();
-        for(int i = 0;i<10 && i<singers.size();i++){//TODO
-            Singer singer = singers.get(i);
+        for (Singer singer : singers) {//TODO
             String content = httpUtil.getContent(createUrl(singer.getId())
-                    ,httpUtil.buildHeaderData(null,cookie,host));
-            Map json = JSONObject.parseObject(content,Map.class);
-            Map songList = (Map)json.get("songlist");
+                    , httpUtil.buildHeaderData(null, cookie, host));
+            Map json = JSONObject.parseObject(content, Map.class);
+            Map songList = (Map) json.get("songlist");
             List songs = JSONArray.parseArray(songList.get("songs").toString());
-            for(Object songObject:songs){
-                Map song = (Map)songObject;
-                if(songService.get(song.get("sid").toString())==null){
+            for (Object songObject : songs) {
+                Map song = (Map) songObject;
+                if (songService.get(song.get("sid").toString()) == null) {
                     Song songModel = new Song();
                     songModel.setId(song.get("sid").toString());
                     songModel.setUrl(song.get("url").toString());
@@ -64,8 +66,8 @@ public class SingerSongSpider {
                     List<String> singerIds = songModel.getSingerIds();
                     //添加歌手
                     List singersOfSong = JSONArray.parseArray(song.get("singers").toString());
-                    for(Object object:singersOfSong){
-                        Map map = (Map)object;
+                    for (Object object : singersOfSong) {
+                        Map map = (Map) object;
                         singerIds.add(map.get("id").toString());
                     }
 
@@ -76,14 +78,14 @@ public class SingerSongSpider {
 
             //相似歌手
             List<String> list = singer.getSimilarSingerIds();
-            if(list == null || list.isEmpty()){
+            if (list == null || list.isEmpty()) {
                 Singer singer1 = new Singer();
                 list = new ArrayList<>();
                 singer1.setId(singer.getId());
                 singer1.setSimilarSingerIds(list);
-                Map relatedChannel = (Map)json.get("related_channel");
+                Map relatedChannel = (Map) json.get("related_channel");
                 List similarArtists = JSONArray.parseArray(relatedChannel.get("similar_artists").toString());
-                for(Object object :similarArtists){
+                for (Object object : similarArtists) {
                     Map map = (Map) object;
                     list.add(map.get("id").toString());
                 }

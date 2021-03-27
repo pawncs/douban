@@ -87,7 +87,6 @@ public class UserControl {
             returnData.put("message", "userName not correct");
             return returnData;
         }
-
         if (regedUser.getPassword().equals(password)) {
             UserLoginInfo userLoginInfo = new UserLoginInfo();
             userLoginInfo.setUserId(regedUser.getId());
